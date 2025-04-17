@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: consumer-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: flight-consumer-debug-NEW
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      enable-auto-commit: true
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+    listener:
+      ack-mode: record
+      concurrency: 1
+  logging:
+    level:
+      org.springframework.kafka.listener: DEBUG
+      org.apache.kafka: DEBUG
+server:
+  port: 8082
